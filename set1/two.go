@@ -1,4 +1,4 @@
-package setOne
+package set1
 
 import (
 	"encoding/hex"
@@ -39,7 +39,7 @@ func encodeHex(input []byte) []byte {
 	dst := make([]byte, hex.EncodedLen(len(input)))
 
 	byteCount := hex.Encode(dst, input)
-	fmt.Printf("%d bytes written\n", byteCount)
+	fmt.Printf("\n%d bytes written\n", byteCount)
 
 	return dst
 }

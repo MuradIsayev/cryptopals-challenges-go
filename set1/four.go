@@ -1,4 +1,4 @@
-package setOne
+package set1
 
 import (
 	"bufio"
@@ -9,7 +9,7 @@ import (
 )
 
 func SingleCharXorInFile() {
-	file, err := os.Open("./setOne/4.txt")
+	file, err := os.Open("./set1/testdata/4.txt")
 	if err != nil {
 		log.Fatal(err)
 	}

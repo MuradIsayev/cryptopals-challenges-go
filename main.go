@@ -1,17 +1,15 @@
 package main
 
-import (
-	"crypto-challanges/setOne"
-)
+import "crypto-challenges/set1"
 
 func main() {
-	// setOne.HexToBase64()
-	// setOne.FixedXor()
-	// setOne.SingleByteXorCipher()
-	// setOne.SingleCharXorInFile()
+	// set1.HexToBase64()
+	// set1.FixedXor()
+	// set1.SingleByteXorCipher()
+	// set1.SingleCharXorInFile()
 
 	input := []byte(`Burning 'em, if you ain't quick and nimble
 I go crazy when I hear a cymbal`)
 	key := []byte("ICE")
-	setOne.EncryptWithRepeatingKey(key, input)
+	set1.EncryptWithRepeatingKey(key, input)
 }

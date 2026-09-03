@@ -1,6 +1,7 @@
-package setOne
+package set1
 
 import (
+	"crypto-challenges/cryptoutil"
 	"fmt"
 	"math"
 )
@@ -31,36 +32,6 @@ func SingleByteXorCipher() {
 	)
 }
 
-func CalculateEnglishScore(plainText []byte) float64 {
-	score := 0.0
-
-	for _, c := range plainText {
-		if c >= 'A' && c <= 'Z' {
-			c += 'a' - 'A'
-		}
-
-		switch {
-		case c >= 'a' && c <= 'z':
-			score += LetterFrequencies[c]
-
-		case c == ' ':
-			score += 5.0
-
-		case c == '.', c == ',', c == '\'', c == '!', c == '?':
-			score += 0.5
-
-		case c >= 32 && c <= 126:
-			score -= 1.0
-
-		default:
-			score -= 10.0
-		}
-	}
-
-	return score
-
-}
-
 func FindBestCandidate(cipherText []byte) Candidate {
 	bestCandidate := Candidate{
 		Score: math.Inf(-1),
@@ -68,7 +39,7 @@ func FindBestCandidate(cipherText []byte) Candidate {
 
 	for key := range 256 {
 		plainText := SingleByteXOR(cipherText, byte(key))
-		score := CalculateEnglishScore(plainText)
+		score := cryptoutil.CalculateEnglishScore(plainText)
 
 		if score > bestCandidate.Score {
 			bestCandidate = Candidate{

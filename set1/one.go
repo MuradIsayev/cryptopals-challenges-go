@@ -1,4 +1,4 @@
-package setOne
+package set1
 
 import (
 	"encoding/base64"
