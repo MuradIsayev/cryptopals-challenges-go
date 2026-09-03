@@ -1,7 +1,7 @@
 package set1
 
 import (
-	"encoding/hex"
+	"crypto-challenges/cryptoutil"
 	"errors"
 	"fmt"
 )
@@ -10,14 +10,14 @@ func FixedXor() {
 	input1 := []byte("1c0111001f010100061a024b53535009181c")
 	input2 := []byte("686974207468652062756c6c277320657965")
 
-	decodedInput1, err := decodeHex(input1)
+	decodedInput1, err := cryptoutil.DecodeHex(input1)
 	if err != nil {
 		fmt.Printf("failed to decode hex: %s", err)
 		return
 
 	}
 
-	decodedInput2, err := decodeHex(input2)
+	decodedInput2, err := cryptoutil.DecodeHex(input2)
 	if err != nil {
 		fmt.Printf("failed to decode hex: %s", err)
 		return
@@ -30,18 +30,9 @@ func FixedXor() {
 		return
 	}
 
-	encodedHex := encodeHex(xorResult)
+	encodedHex := cryptoutil.EncodeHex(xorResult)
 
-	fmt.Printf("Set One Two Answer: %s", encodedHex)
-}
-
-func encodeHex(input []byte) []byte {
-	dst := make([]byte, hex.EncodedLen(len(input)))
-
-	byteCount := hex.Encode(dst, input)
-	fmt.Printf("\n%d bytes written\n", byteCount)
-
-	return dst
+	fmt.Printf("\nSet 1.2 Answer: %s", encodedHex)
 }
 
 func xor(a, b []byte) ([]byte, error) {
@@ -56,5 +47,4 @@ func xor(a, b []byte) ([]byte, error) {
 	}
 
 	return dst, nil
-
 }

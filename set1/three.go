@@ -15,7 +15,7 @@ type Candidate struct {
 func SingleByteXorCipher() {
 	input := []byte("1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736")
 
-	decodedHex, err := decodeHex(input)
+	decodedHex, err := cryptoutil.DecodeHex(input)
 	if err != nil {
 		fmt.Printf("failed to decode hex: %s", err)
 		return
@@ -24,7 +24,7 @@ func SingleByteXorCipher() {
 	bestCandidate := FindBestCandidate(decodedHex)
 
 	fmt.Printf(
-		"Key: %c (%d)\nScore: %.2f\nPlaintext: %s\n",
+		"Set 1.3 Answer: Key: %c (%d)\nScore: %.2f\nPlaintext: %s",
 		bestCandidate.Key,
 		bestCandidate.Key,
 		bestCandidate.Score,

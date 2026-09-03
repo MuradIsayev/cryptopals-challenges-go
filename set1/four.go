@@ -2,6 +2,7 @@ package set1
 
 import (
 	"bufio"
+	"crypto-challenges/cryptoutil"
 	"fmt"
 	"log"
 	"math"
@@ -37,7 +38,7 @@ func SingleCharXorInFile() {
 	}
 
 	fmt.Printf(
-		"Key: %c (%d)\nScore: %.2f\nPlaintext: %s\n",
+		"\nSet 1.4 Answer: Key: %c (%d)\nScore: %.2f\nPlaintext: %s",
 		bestCandidateInFile.Key,
 		bestCandidateInFile.Key,
 		bestCandidateInFile.Score,
@@ -47,7 +48,7 @@ func SingleCharXorInFile() {
 }
 
 func SingleByteXorCipherByInput(input []byte) *Candidate {
-	decodedHex, err := decodeHex(input)
+	decodedHex, err := cryptoutil.DecodeHex(input)
 	if err != nil {
 		fmt.Printf("failed to decode hex: %s", err)
 		return nil
