@@ -14,6 +14,6 @@ func TestChallenge05_RepeatingKeyXOR(t *testing.T) {
 	gotHex := cryptoutil.EncodeHex(result)
 
 	if string(expectedHex) != string(gotHex) {
-		t.Fatalf("expected %s, got %s", expectedHex, gotHex)
+		t.Fatalf("expected %q, got %q", expectedHex, gotHex)
 	}
 }

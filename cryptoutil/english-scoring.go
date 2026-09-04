@@ -1,5 +1,14 @@
 package cryptoutil
 
+import "math"
+
+// Candidate holds the results of a single-byte XOR decryption attempt.
+type Candidate struct {
+	Key          byte
+	Score        float64
+	DecryptedOut string
+}
+
 // Letter distributions in English text
 var LetterFrequencies = map[byte]float64{
 	'a': 8.167,
@@ -30,10 +39,10 @@ var LetterFrequencies = map[byte]float64{
 	'z': 0.074,
 }
 
-func CalculateEnglishScore(plainText []byte) float64 {
+func CalculateEnglishScore(decryptedOut []byte) float64 {
 	score := 0.0
 
-	for _, c := range plainText {
+	for _, c := range decryptedOut {
 		if c >= 'A' && c <= 'Z' {
 			c += 'a' - 'A'
 		}
@@ -58,4 +67,25 @@ func CalculateEnglishScore(plainText []byte) float64 {
 
 	return score
 
+}
+
+func FindBestCandidate(cipherInput []byte) Candidate {
+	bestCandidate := Candidate{
+		Score: math.Inf(-1),
+	}
+
+	for key := range 256 {
+		decryptedOut := SingleByteXOR(cipherInput, byte(key))
+		score := CalculateEnglishScore(decryptedOut)
+
+		if score > bestCandidate.Score {
+			bestCandidate = Candidate{
+				Key:          byte(key),
+				Score:        score,
+				DecryptedOut: string(decryptedOut),
+			}
+		}
+	}
+
+	return bestCandidate
 }
