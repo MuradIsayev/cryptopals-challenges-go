@@ -15,6 +15,7 @@ Instead of writing isolated scripts for each challenge, this repository is built
 * **Challenges 1 & 2 (Encodings & Fixed XOR):** Cryptography requires operating on raw bytes, not strings. Converting hex to base64 reinforces how data is packed (hex uses 4 bits per character; base64 uses 6 bits). Challenge 2 demonstrates the foundational, reversible property of XOR: $A \oplus B = C$, and $C \oplus B = A$.
 * **Challenges 3 & 4 (Single-Byte XOR & Frequency Analysis):** Encryption is vulnerable if the underlying data has predictable patterns. By building a scoring function based on standard English letter frequencies (where 'e', 't', and ' ' appear most often), the plaintext mathematically bubbles to the top of hundreds of garbage decryptions. 
 * **Challenge 5 (Repeating-Key XOR):** Transitioning from a single byte to a rotating key is handled cleanly using modular arithmetic (`key[i % len(key)]`). From a Go engineering perspective, this challenge highlighted the performance difference between continuously appending to a slice versus pre-allocating memory (`make([]byte, len(input))`) and assigning values by index.
+* **Challenge 6 (Break Repeating-Key XOR & Base64):** Breaking this cipher relies on calculating the Hamming distance between byte chunks to mathematically reveal the correct key length. Matrix transposition then reorganizes the ciphertext, reducing one complex repeating-key cipher into multiple, easily crackable single-byte XOR ciphers.
 
 ## Running the Suite
 To verify all challenge solutions, run the test suite from the root directory:
