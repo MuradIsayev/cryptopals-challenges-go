@@ -8,9 +8,6 @@ import (
 	"testing"
 )
 
-// TODO: Take notes of important concepts
-// TODO: Take Notes on the concept (all important details)
-
 func TestChallenge06_BreakRepeatingKeyXOR(t *testing.T) {
 	expectedResult := "Terminator X: Bring the noise"
 	file, err := os.Open("testdata/6.txt")
